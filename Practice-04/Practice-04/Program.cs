@@ -10,8 +10,9 @@ namespace Practice_04
   {
     static void Main(string[] args)
     {
-      new Comparable.Example4().RunExample();
-      new Comparer.Example1().RunExample();
+            //new Comparable.Example2().RunExample();
+            //new Comparer.Example1().RunExample();
+            new Equitable.Example1().RunExample();
     }
   }
 }

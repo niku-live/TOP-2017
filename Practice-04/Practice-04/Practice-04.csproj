@@ -49,6 +49,7 @@
     <Compile Include="Comparable\Example3.cs" />
     <Compile Include="Comparable\Example4.cs" />
     <Compile Include="Comparer\Example1.cs" />
+    <Compile Include="Equitable\Example1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

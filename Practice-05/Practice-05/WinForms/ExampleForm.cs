@@ -27,6 +27,10 @@ namespace Practice_05.WinForms
     private void button1_Click(object sender, EventArgs e)
     {
       button1.Text = "You pressed me";
+            // form2 = new ExampleForm();
+            //form2.Show(this);
+            //.Close();
+            //form2.ShowDialog();
     }
 
     private void textBox1_Validating(object sender, CancelEventArgs e)

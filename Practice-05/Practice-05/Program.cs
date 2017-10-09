@@ -10,10 +10,10 @@ namespace Practice_05
   {
     static void Main(string[] args)
     {
-      new StringBuilderExample().RunExample();
-      new RegexExample().RunExample();
-      new DictionaryExample().RunExample();
-      new RecursionExample().RunExample();
+      //new StringBuilderExample().RunExample();
+      //new RegexExample().RunExample();
+      //new DictionaryExample().RunExample();
+      //new RecursionExample().RunExample();
       new WinFormsExample().RunExample();
     }
   }

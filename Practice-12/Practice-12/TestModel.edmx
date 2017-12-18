@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DynamicsNAV100Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Access Control">
+          <Key>
+            <PropertyRef Name="User Security ID" />
+            <PropertyRef Name="Role ID" />
+            <PropertyRef Name="Company Name" />
+            <PropertyRef Name="Scope" />
+            <PropertyRef Name="App ID" />
+          </Key>
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="User Security ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Role ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Company Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Scope" Type="int" Nullable="false" />
+          <Property Name="App ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Evaluation Company" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TableDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Table Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User Security ID" />
+          </Key>
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="User Security ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="User Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Full Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="Expiry Date" Type="datetime" Nullable="false" />
+          <Property Name="Windows Security ID" Type="nvarchar" MaxLength="119" Nullable="false" />
+          <Property Name="Change Password" Type="tinyint" Nullable="false" />
+          <Property Name="License Type" Type="int" Nullable="false" />
+          <Property Name="Authentication Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Contact Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Exchange Identifier" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Application ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TableDeta__Table__688A0BA7">
+          <End Role="Table" Type="Self.Table" Multiplicity="1" />
+          <End Role="TableDetail" Type="Self.TableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TableDetail">
+              <PropertyRef Name="Table Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DynamicsNAV100ModelStoreContainer">
+          <EntitySet Name="Access Control" EntityType="Self.Access Control" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableDetail" EntityType="Self.TableDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TableDeta__Table__688A0BA7" Association="Self.FK__TableDeta__Table__688A0BA7">
+            <End Role="Table" EntitySet="Table" />
+            <End Role="TableDetail" EntitySet="TableDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DynamicsNAV100Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Access_Control">
+          <Key>
+            <PropertyRef Name="User_Security_ID" />
+            <PropertyRef Name="Role_ID" />
+            <PropertyRef Name="Company_Name" />
+            <PropertyRef Name="Scope" />
+            <PropertyRef Name="App_ID" />
+          </Key>
+          <Property Name="timestamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="User_Security_ID" Type="Guid" Nullable="false" />
+          <Property Name="Role_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Company_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Scope" Type="Int32" Nullable="false" />
+          <Property Name="App_ID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="timestamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Evaluation_Company" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Security_ID" />
+          </Key>
+          <Property Name="timestamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="User_Security_ID" Type="Guid" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Full_Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Expiry_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Windows_Security_ID" Type="String" MaxLength="119" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Change_Password" Type="Byte" Nullable="false" />
+          <Property Name="License_Type" Type="Int32" Nullable="false" />
+          <Property Name="Authentication_Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contact_Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Exchange_Identifier" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Application_ID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DynamicsNAV100Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Access_Control" EntityType="Self.Access_Control" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Table" EntityType="DynamicsNAV100Model.Table" />
+          <EntitySet Name="TableDetail" EntityType="DynamicsNAV100Model.TableDetail" />
+          <AssociationSet Name="FK__TableDeta__Table__688A0BA7" Association="DynamicsNAV100Model.FK__TableDeta__Table__688A0BA7">
+            <End Role="Table" EntitySet="Table" />
+            <End Role="TableDetail" EntitySet="TableDetail" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="TableDetail" Relationship="DynamicsNAV100Model.FK__TableDeta__Table__688A0BA7" FromRole="Table" ToRole="TableDetail" />
+        </EntityType>
+        <EntityType Name="TableDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Table_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Table" Relationship="DynamicsNAV100Model.FK__TableDeta__Table__688A0BA7" FromRole="TableDetail" ToRole="Table" />
+        </EntityType>
+        <Association Name="FK__TableDeta__Table__688A0BA7">
+          <End Type="DynamicsNAV100Model.Table" Role="Table" Multiplicity="1" />
+          <End Type="DynamicsNAV100Model.TableDetail" Role="TableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TableDetail">
+              <PropertyRef Name="Table_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DynamicsNAV100ModelStoreContainer" CdmEntityContainer="DynamicsNAV100Entities">
+          <EntitySetMapping Name="Access_Control">
+            <EntityTypeMapping TypeName="DynamicsNAV100Model.Access_Control">
+              <MappingFragment StoreEntitySet="Access Control">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="User_Security_ID" ColumnName="User Security ID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role ID" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company Name" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="App_ID" ColumnName="App ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="DynamicsNAV100Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Evaluation_Company" ColumnName="Evaluation Company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DynamicsNAV100Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="User_Security_ID" ColumnName="User Security ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User Name" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full Name" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Expiry_Date" ColumnName="Expiry Date" />
+                <ScalarProperty Name="Windows_Security_ID" ColumnName="Windows Security ID" />
+                <ScalarProperty Name="Change_Password" ColumnName="Change Password" />
+                <ScalarProperty Name="License_Type" ColumnName="License Type" />
+                <ScalarProperty Name="Authentication_Email" ColumnName="Authentication Email" />
+                <ScalarProperty Name="Contact_Email" ColumnName="Contact Email" />
+                <ScalarProperty Name="Exchange_Identifier" ColumnName="Exchange Identifier" />
+                <ScalarProperty Name="Application_ID" ColumnName="Application ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="DynamicsNAV100Model.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableDetail">
+            <EntityTypeMapping TypeName="DynamicsNAV100Model.TableDetail">
+              <MappingFragment StoreEntitySet="TableDetail">
+                <ScalarProperty Name="Table_Id" ColumnName="Table Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
